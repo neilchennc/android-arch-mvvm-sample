@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Schedule On Off</string>
+
+    <string name="table_day">Day</string>
+    <string name="table_start_time">Start time</string>
+    <string name="table_end_time">End time</string>
+    <string name="table_sunday">Sunday</string>
+    <string name="table_monday">Monday</string>
+    <string name="table_tuesday">Tuesday</string>
+    <string name="table_wednesday">Wednesday</string>
+    <string name="table_thursday">Thursday</string>
+    <string name="table_friday">Friday</string>
+    <string name="table_saturday">Saturday</string>
+    <string name="table_setting">Setting</string>
+</resources>

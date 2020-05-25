@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="tw.neil.sample.arch.mvvm.scheduleonoff.ui.main.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_timePickerFragment"
+            app:destination="@id/timePickerFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/timePickerFragment"
+        android:name="tw.neil.sample.arch.mvvm.scheduleonoff.ui.dialog.TimePickerFragment"
+        android:label="TimePickerFragment">
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="tw.neil.sample.arch.mvvm.scheduleonoff.data.Task"
+            app:nullable="true" />
+    </dialog>
+</navigation>

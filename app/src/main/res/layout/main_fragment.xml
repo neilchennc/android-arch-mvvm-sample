@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.util.Calendar" />
+
+        <variable
+            name="mainViewModel"
+            type="tw.neil.sample.arch.mvvm.scheduleonoff.ui.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainFragment">
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:collapseColumns="@string/collapse_columns"
+            android:divider="@drawable/divider_line"
+            android:orientation="vertical"
+            android:showDividers="middle|end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewTableHeader"
+                style="@style/common_text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="-1dp"
+                android:layout_weight="1"
+                android:background="@drawable/header_background"
+                android:gravity="center"
+                android:text="@string/app_name" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center"
+                    android:text="@string/table_day" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center"
+                    android:text="@string/table_start_time" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center"
+                    android:text="@string/table_end_time" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center|end"
+                    android:text="@string/table_sunday" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.sundayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.sundayStartTime)}"
+                    android:text="@{mainViewModel.sundayStartTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.sundayAvailable ? @color/startTime : @color/text}" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.sundayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.sundayEndTime)}"
+                    android:text="@{mainViewModel.sundayEndTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.sundayAvailable ? @color/endTime : @color/text}" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@{mainViewModel.sundayEnabled}"
+                    android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.onWeekEnableChanged(isChecked, Calendar.SUNDAY)}"
+                    android:padding="4dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center|end"
+                    android:text="@string/table_monday" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.mondayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.mondayStartTime)}"
+                    android:text="@{mainViewModel.mondayStartTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.mondayAvailable ? @color/startTime : @color/text}" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.mondayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.mondayEndTime)}"
+                    android:text="@{mainViewModel.mondayEndTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.mondayAvailable ? @color/endTime : @color/text}" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@{mainViewModel.mondayEnabled}"
+                    android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.onWeekEnableChanged(isChecked, Calendar.MONDAY)}"
+                    android:padding="4dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center|end"
+                    android:text="@string/table_tuesday" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.tuesdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.tuesdayStartTime)}"
+                    android:text="@{mainViewModel.tuesdayStartTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.tuesdayAvailable ? @color/startTime : @color/text}" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.tuesdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.tuesdayEndTime)}"
+                    android:text="@{mainViewModel.tuesdayEndTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.tuesdayAvailable ? @color/endTime : @color/text}" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@{mainViewModel.tuesdayEnabled}"
+                    android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.onWeekEnableChanged(isChecked, Calendar.TUESDAY)}"
+                    android:padding="4dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center|end"
+                    android:text="@string/table_wednesday" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.wednesdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.wednesdayStartTime)}"
+                    android:text="@{mainViewModel.wednesdayStartTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.wednesdayAvailable ? @color/startTime : @color/text}" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.wednesdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.wednesdayEndTime)}"
+                    android:text="@{mainViewModel.wednesdayEndTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.wednesdayAvailable ? @color/endTime : @color/text}" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@{mainViewModel.wednesdayEnabled}"
+                    android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.onWeekEnableChanged(isChecked, Calendar.WEDNESDAY)}"
+                    android:padding="4dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center|end"
+                    android:text="@string/table_thursday" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.thursdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.thursdayStartTime)}"
+                    android:text="@{mainViewModel.thursdayStartTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.thursdayAvailable ? @color/startTime : @color/text}" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.thursdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.thursdayEndTime)}"
+                    android:text="@{mainViewModel.thursdayEndTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.thursdayAvailable ? @color/endTime : @color/text}" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@{mainViewModel.thursdayEnabled}"
+                    android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.onWeekEnableChanged(isChecked, Calendar.THURSDAY)}"
+                    android:padding="4dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center|end"
+                    android:text="@string/table_friday" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.fridayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.fridayStartTime)}"
+                    android:text="@{mainViewModel.fridayStartTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.fridayAvailable ? @color/startTime : @color/text}" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.fridayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.fridayEndTime)}"
+                    android:text="@{mainViewModel.fridayEndTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.fridayAvailable ? @color/endTime : @color/text}" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@{mainViewModel.fridayEnabled}"
+                    android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.onWeekEnableChanged(isChecked, Calendar.FRIDAY)}"
+                    android:padding="4dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="center|end"
+                    android:text="@string/table_saturday" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.saturdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.saturdayStartTime)}"
+                    android:text="@{mainViewModel.saturdayStartTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.saturdayAvailable ? @color/startTime : @color/text}" />
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{mainViewModel.saturdayAvailable ? @drawable/bg_time_available : @drawable/bg_time_unavailable}"
+                    android:gravity="center"
+                    android:onClick="@{() -> mainViewModel.onTimeClick(mainViewModel.saturdayEndTime)}"
+                    android:text="@{mainViewModel.saturdayEndTime.toTimeFormat()}"
+                    android:textColor="@{mainViewModel.saturdayAvailable ? @color/endTime : @color/text}" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:checked="@{mainViewModel.saturdayEnabled}"
+                    android:onCheckedChanged="@{(_, isChecked) -> mainViewModel.onWeekEnableChanged(isChecked, Calendar.SATURDAY)}"
+                    android:padding="4dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divider_line"
+                android:showDividers="beginning|middle|end">
+
+                <TextView
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/tableCellOuter"
+                    android:gravity="start|center"
+                    android:text="@string/table_setting" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:checked="@{mainViewModel.allTaskEnabled}"
+                        android:onCheckedChanged="@{(view, isChecked) -> mainViewModel.onSettingEnableChanged(isChecked)}"
+                        android:padding="4dp" />
+                </FrameLayout>
+            </TableRow>
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

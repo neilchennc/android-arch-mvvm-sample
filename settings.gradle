@@ -1,0 +1,2 @@
+rootProject.name='Schedule On Off'
+include ':app'
