@@ -23,5 +23,5 @@
 **About**
 
 - A demo app to do something weekly (i.e. Turn on/off something).
-- Each day of the week has two time: start time and end time.
+- Each day of the week has two times: start time and end time.
 - It will not trigger if start time is equals to end time.
