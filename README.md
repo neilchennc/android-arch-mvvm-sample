@@ -1,4 +1,4 @@
-# Android MVVM Sample & Pratice
+# Android MVVM Sample & Practice
 
 **A MVVM architecture sample in Kotlin using [Architecture Components](https://developer.android.com/arch):**
 
