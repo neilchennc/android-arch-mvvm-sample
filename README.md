@@ -1,6 +1,8 @@
-# Android MVVM Sample & Practice
+# Deprecated. Checkout latest sample [here](https://github.com/neilchennc/my-movies).
 
-**A MVVM architecture sample in Kotlin using [Architecture Components](https://developer.android.com/arch):**
+## Android MVVM Sample & Practice
+
+### A MVVM architecture sample in Kotlin using [Architecture Components](https://developer.android.com/arch):
 
 - Room
 - ViewModel
@@ -9,18 +11,18 @@
 - Navigation & SafeArgs
 - Lifecycle-aware components
 
-**Extra libraries:**
+### Extra libraries:
 
 - [Koin](https://github.com/InsertKoinIO/koin) (Dependency Injection for Kotlin)
 - [Timber](https://github.com/JakeWharton/timber) (A Logger library)
 
-**Screenshots:**
+## Screenshots:
 
 ![01](./screenshots/Screenshot_01.png)
 
 ![02](./screenshots/Screenshot_02.png)
 
-**About**
+## About
 
 - A demo app to do something weekly (i.e. Turn on/off something).
 - Each day of the week has two times: start time and end time.
